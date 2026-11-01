@@ -1,6 +1,7 @@
 const express = require('express');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Route 1: Home page
 app.get('/', (req, res) => {
@@ -30,6 +31,6 @@ app.use((req, res) => {
 });
 
 // Start server
-app.listen(3000, () => {
-    console.log('Server running at http://localhost:3000');
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });
