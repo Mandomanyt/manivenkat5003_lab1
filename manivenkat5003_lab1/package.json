@@ -1,13 +1,18 @@
 {
-  "name": "backend-labs",
+  "name": "manivenkat5003_lab1",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Lab 1 - Node.js and Express Server",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "nodejs",
+    "express",
+    "lab1"
+  ],
+  "author": "Mani Venkat Sai Sankar Naidu",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {

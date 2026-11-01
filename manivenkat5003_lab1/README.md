@@ -1,11 +1,11 @@
 # Lab 1: Node.js and Express Server
 
-**Deployment URL:** https://j-mahammad-shakeer-lab1.onrender.com/
+**Deployment URL:** https://manivenkat5003-lab1.onrender.com/
 
 ## 1. Student Details
 
-- **Name:** Jangli Mahammad Shakeer
-- **Registration Number:** 252U1R5058
+- **Name:** Mani Venkat Sai Sankar Naidu
+- **Registration Number:** 252U1R5003
 - **Section:** 106 AIDE-2A
 - **Subject:** Backend Development Fundamentals
 - **Lab:** Lab 1 — Node.js and Express Server
@@ -27,7 +27,7 @@ The objective of this lab is to understand the fundamentals of Node.js and Expre
 ## 4. Project Structure
 
 ```text
-Backend Labs/
+manivenkat5003_lab1/
 │
 ├── node_modules/
 ├── screenshots/
@@ -36,7 +36,6 @@ Backend Labs/
 │   ├── time.png
 │   └── unknown.png
 │
-├── .env
 ├── .gitignore
 ├── package-lock.json
 ├── package.json
@@ -62,13 +61,13 @@ npm -v
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/shakeerniat-sudo/J.Mahammad-Shakeer_lab1.git
+git clone https://github.com/Mandomanyt/manivenkat5003_lab1.git
 ```
 
 ### Step 2: Navigate to the Project Directory
 
 ```bash
-cd J.Mahammad-Shakeer_lab1
+cd manivenkat5003_lab1/manivenkat5003_lab1
 ```
 
 ### Step 3: Install Dependencies
@@ -139,8 +138,8 @@ Expected response:
 
 ```json
 {
-  "name": "Jangli Mahammad Shakeer",
-  "registrationNumber": "252U1R5058",
+  "name": "Mani Venkat Sai Sankar Naidu",
+  "registrationNumber": "252U1R5003",
   "section": "106 AIDE-2A"
 }
 ```
@@ -205,27 +204,26 @@ The following screenshots demonstrate the output of the application's endpoints.
 ### 8.1 Home Endpoint
 
 This screenshot demonstrates the welcome message returned by the home endpoint.
-<img width="1917" height="1012" alt="image" src="https://github.com/user-attachments/assets/5f3b5a59-5c0b-45b7-85a8-aeffc2615230" />
 
-
+![Home Endpoint](./screenshots/home.png)
 
 ### 8.2 About Endpoint
 
 This screenshot demonstrates the student information returned in JSON format.
-<img width="1917" height="1028" alt="image" src="https://github.com/user-attachments/assets/328efaba-2fac-462b-a0dc-d74b25f65929" />
 
+![About Endpoint](./screenshots/about.png)
 
 ### 8.3 Time Endpoint
 
 This screenshot demonstrates the current date and time returned by the server.
-<img width="1917" height="1021" alt="image" src="https://github.com/user-attachments/assets/adb32ad2-ac34-4939-a72b-b2929e1a2165" />
 
+![Time Endpoint](./screenshots/time.png)
 
 ### 8.4 Unknown Route
 
 This screenshot demonstrates the 404 response returned for an undefined route.
-<img width="1917" height="1020" alt="image" src="https://github.com/user-attachments/assets/c6d85252-7993-40f1-b985-f106353840a4" />
 
+![Unknown Route](./screenshots/unknown.png)
 
 ## 9. Notes
 
@@ -263,8 +261,8 @@ Overall, this lab strengthened my understanding of backend development fundament
 
 ## 11. GitHub Repository
 
-**Repository:** https://github.com/shakeerniat-sudo/J.Mahammad-Shakeer_lab1
+**Repository:** https://github.com/Mandomanyt/manivenkat5003_lab1
 
-**Deployment:** https://j-mahammad-shakeer-lab1.onrender.com/
+**Deployment:** https://manivenkat5003-lab1.onrender.com/
 
 ---

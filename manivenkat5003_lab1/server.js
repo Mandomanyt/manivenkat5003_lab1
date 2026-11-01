@@ -1,4 +1,3 @@
-
 const express = require('express');
 
 const app = express();
@@ -11,8 +10,8 @@ app.get('/', (req, res) => {
 // Route 2: About page
 app.get('/about', (req, res) => {
     res.status(200).json({
-        name: 'Jangli Mahammad Shakeer',
-        registrationNumber: "252U1R5058",
+        name: 'Mani Venkat Sai Sankar Naidu',
+        registrationNumber: "252U1R5003",
         section: "106 AIDE-2A"
     });
 });
@@ -20,9 +19,9 @@ app.get('/about', (req, res) => {
 // Route 3: Current date and time
 // GET /time - Current date and time
 app.get("/time", (request, response) => {
-response.status(200).json({
-currentDateTime: new Date().toString()
-});
+    response.status(200).json({
+        currentDateTime: new Date().toString()
+    });
 });
 
 // Handle unknown routes
