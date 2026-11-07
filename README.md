@@ -1,268 +1,620 @@
-# Lab 1: Node.js and Express Server
+# Lab 3 – REST API, Query Parameters, Validation and Debugging
 
-**Deployment URL:** https://manivenkat5003-lab1.onrender.com/
-
-## 1. Student Details
+## Project Details
 
 - **Name:** Mani Venkat Sai Sankar Naidu
 - **Registration Number:** 252U1R5003
-- **Section:** 106 AIDE-2A
-- **Subject:** Backend Development Fundamentals
-- **Lab:** Lab 1 — Node.js and Express Server
+- **Section:** CSE AIDE-2A-106
+- **Course:** Backend Development Fundamentals
+- **Lab:** Lab 3 – REST API, Query Parameters, Validation and Debugging
+- **Institution:** Aurora Deemed to be University
 
-## 2. Objective
+## Deployment URL
 
-The objective of this lab is to understand the fundamentals of Node.js and Express.js by creating a web server, implementing API endpoints, handling HTTP requests and responses, and managing unknown routes using appropriate HTTP status codes.
+**Render URL:** https://manivenkat5003-lab3.onrender.com/books
 
-## 3. Technologies Used
+## Project Description
+
+This project implements RESTful API operations using Node.js, Express.js, and SQLite. It provides endpoints to create, retrieve, update, and delete book records.
+
+It also supports searching, sorting, pagination, price filtering, input validation, and proper HTTP status codes.
+
+The database contains 10 book records with details such as book ID, title, author, price, and number of pages.
+
+## Technologies Used
 
 - Node.js
 - Express.js
+- SQLite
+- SQLite3
 - JavaScript
-- npm (Node Package Manager)
+- Postman
 - Visual Studio Code
-- Git and GitHub
-- Render (Deployment)
+- Render
 
-## 4. Project Structure
+## Project Structure
 
 ```text
-manivenkat5003_lab1/
+lab 3/
 │
-├── node_modules/
-├── screenshots/
-│   ├── about.png
-│   ├── home.png
-│   ├── time.png
-│   └── unknown.png
-│
-├── .gitignore
-├── package-lock.json
+├── server.js
+├── books.db
 ├── package.json
+├── package-lock.json
+├── .gitignore
 ├── README.md
-└── server.js
+│
+└── screenshots/
+    ├── 01-render-deployment.png
+    ├── 02-get-all-books.png
+    ├── 03-get-book-by-id.png
+    ├── 04-search-books.png
+    ├── 05-sorting-ascending.png
+    ├── 06-sorting-descending.png
+    ├── 07-pagination.png
+    ├── 08-price-filter.png
+    ├── 09-combined-query.png
+    ├── 10-post-success.png
+    ├── 11-post-validation.png
+    ├── 12-put-update.png
+    └── 13-delete.png
 ```
 
-## 5. Installation Instructions
+## Installation and Setup
 
-Follow these steps to run the project locally.
-
-### Prerequisites
-
-Ensure that Node.js and npm are installed on your system.
-
-Check the installed versions:
+### 1. Clone the repository
 
 ```bash
-node -v
-npm -v
+git clone https://github.com/Mandomanyt/manivenkat5003_labs.git
 ```
 
-### Step 1: Clone the Repository
+### 2. Open the project folder
 
 ```bash
-git clone https://github.com/Mandomanyt/manivenkat5003_lab1.git
+cd "lab 3"
 ```
 
-### Step 2: Navigate to the Project Directory
-
-```bash
-cd manivenkat5003_lab1/manivenkat5003_lab1
-```
-
-### Step 3: Install Dependencies
+### 3. Install dependencies
 
 ```bash
 npm install
 ```
 
-This command installs the dependencies specified in `package.json`, including Express.js.
-
-## 6. Execution Instructions
-
-### Run the Express Server
-
-Execute:
+### 4. Start the development server
 
 ```bash
-node server.js
+npm run dev
 ```
 
-Expected terminal output:
+The server runs at:
 
 ```text
-Server running at http://localhost:3000
+http://localhost:3000
 ```
 
-The application is now ready to receive HTTP requests.
+## API Endpoints
 
-Keep the terminal running while testing the endpoints.
+| HTTP Method | Endpoint | Description |
+|---|---|---|
+| GET | `/books` | Retrieve all books |
+| GET | `/books/:bookId` | Retrieve a specific book |
+| POST | `/books` | Add a new book |
+| PUT | `/books/:bookId` | Update a book |
+| DELETE | `/books/:bookId` | Delete a book |
 
-## 7. API Endpoints
+## Query Parameters
 
-The application provides three main GET endpoints and a 404 handler for unknown routes.
-
-### Endpoint 1: Home
-
-- **Method:** GET
-- **Path:** `/`
-- **Purpose:** Displays a welcome message.
-- **Status Code:** 200 OK
-
-Example URL:
+### 1. Search Books
 
 ```text
-http://localhost:3000/
+GET /books?search_q=The
 ```
 
-Expected response:
+Searches for books using a partial title.
+
+Expected matching books include:
+
+- The Alchemist
+- Think Like a Monk
+- The Power of Now
+- The 5 AM Club
+
+### 2. Sorting
+
+**Ascending order:**
 
 ```text
-Welcome to Node.js and Express Server!
+GET /books?order_by=price&order=ASC
 ```
 
-### Endpoint 2: About
+Sorts books by price from lowest to highest.
 
-- **Method:** GET
-- **Path:** `/about`
-- **Purpose:** Returns student information in JSON format.
-- **Status Code:** 200 OK
-
-Example URL:
+**Descending order:**
 
 ```text
-http://localhost:3000/about
+GET /books?order_by=price&order=DESC
 ```
 
-Expected response:
+Sorts books by price from highest to lowest.
+
+### 3. Pagination
+
+**First five books:**
+
+```text
+GET /books?limit=5&offset=0
+```
+
+Returns five records starting from the first record.
+
+**Next five books:**
+
+```text
+GET /books?limit=5&offset=5
+```
+
+Returns the next five records.
+
+### 4. Price Filtering
+
+```text
+GET /books?min_price=200&max_price=350
+```
+
+Retrieves books within the price range of ₹200 to ₹350.
+
+Expected books:
+
+- The Alchemist – ₹250
+- Rich Dad Poor Dad – ₹300
+- Wings of Fire – ₹200
+- Ikigai – ₹350
+- Zero to One – ₹320
+
+### 5. Combined Query
+
+```text
+GET /books?search_q=The&min_price=200&max_price=500&order_by=price&order=ASC&limit=3&offset=0
+```
+
+Combines searching, price filtering, sorting, and pagination.
+
+Expected matching books are sorted by price in ascending order, with a maximum of three records returned.
+
+## Database Records
+
+The database contains the following 10 books:
+
+| ID | Title | Author | Price (₹) | Pages |
+|---:|---|---|---:|---:|
+| 1 | The Alchemist | Paulo Coelho | 250 | 208 |
+| 2 | Atomic Habits | James Clear | 450 | 320 |
+| 3 | Rich Dad Poor Dad | Robert Kiyosaki | 300 | 336 |
+| 4 | Wings of Fire | A.P.J. Abdul Kalam | 200 | 180 |
+| 5 | Ikigai | Hector Garcia | 350 | 194 |
+| 6 | Think Like a Monk | Jay Shetty | 400 | 288 |
+| 7 | Deep Work | Cal Newport | 500 | 304 |
+| 8 | The Power of Now | Eckhart Tolle | 280 | 236 |
+| 9 | Zero to One | Peter Thiel | 320 | 210 |
+| 10 | The 5 AM Club | Robin Sharma | 380 | 336 |
+
+## Request Body for POST and PUT
+
+Select **Body → raw → JSON** in Postman.
+
+### POST – Add a New Book
 
 ```json
 {
-  "name": "Mani Venkat Sai Sankar Naidu",
-  "registrationNumber": "252U1R5003",
-  "section": "106 AIDE-2A"
+  "title": "C++ Programming",
+  "author": "Bjarne Stroustrup",
+  "price": 600,
+  "pages": 450
 }
 ```
 
-### Endpoint 3: Time
+Expected status code: **201 Created**
 
-- **Method:** GET
-- **Path:** `/time`
-- **Purpose:** Returns the current date and time.
-- **Status Code:** 200 OK
-
-Example URL:
-
-```text
-http://localhost:3000/time
-```
-
-Expected response:
+### PUT – Update an Existing Book
 
 ```json
 {
-  "currentDateTime": "Current date and time generated by the server"
+  "title": "The Alchemist Updated",
+  "author": "Paulo Coelho",
+  "price": 350,
+  "pages": 220
 }
 ```
 
-The actual response contains the current date and time generated by `new Date().toString()`.
-
-### Endpoint 4: Unknown Route
-
-- **Method:** GET
-- **Path:** `/unknown`
-- **Purpose:** Returns an error response for an undefined route.
-- **Status Code:** 404 Not Found
-
-Example URL:
+Use:
 
 ```text
-http://localhost:3000/unknown
+PUT /books/1
 ```
 
-Expected response:
+Expected status code: **200 OK**
+
+## HTTP Status Codes
+
+| Status Code | Description |
+|---|---|
+| 200 | Request successful |
+| 201 | Book created successfully |
+| 400 | Invalid input or query parameters |
+| 404 | Book or route not found |
+| 500 | Internal server error |
+
+## Input Validation
+
+The application validates:
+
+- Book title must not be empty.
+- Author name must not be empty.
+- Price must be a valid non-negative number.
+- Pages must be a positive integer.
+- Book ID must be a valid positive integer.
+- Sorting order must be ASC or DESC.
+- Sorting column must be valid.
+- Pagination values must be valid.
+- Minimum price must not exceed maximum price.
+
+## Postman Testing
+
+All API endpoints are tested using Postman.
+
+The tests include:
+
+1. Retrieve all 10 books using GET.
+2. Retrieve a specific book using its ID.
+3. Search books using the title.
+4. Sort books by price in ascending order.
+5. Sort books by price in descending order.
+6. Test pagination using limit and offset.
+7. Filter books using minimum and maximum prices.
+8. Combine multiple query parameters.
+9. Add a new book using POST.
+10. Test invalid input validation.
+11. Update a book using PUT.
+12. Delete a book using DELETE.
+13. Test invalid IDs and missing records.
+
+### Negative Testing Queries
+
+**Invalid book ID:**
 
 ```text
-404 - Page Not Found
+GET /books/abc
 ```
 
-### API Summary
+Expected: 400 Bad Request.
 
-| HTTP Method | Endpoint | Description | Status Code |
-|---|---|---|---|
-| GET | `/` | Displays a welcome message | 200 OK |
-| GET | `/about` | Returns student information | 200 OK |
-| GET | `/time` | Returns current date and time | 200 OK |
-| GET | `/unknown` | Handles an undefined route | 404 Not Found |
+**Book not found:**
 
-**Note:** The URLs above use the local development server. After deployment, replace `http://localhost:3000` with the public deployment URL.
+```text
+GET /books/9999
+```
 
-## 8. Screenshots
+Expected: 404 Not Found.
 
-The following screenshots demonstrate the output of the application's endpoints.
+**Invalid sorting column:**
 
-### 8.1 Home Endpoint
+```text
+GET /books?order_by=wrong
+```
 
-This screenshot demonstrates the welcome message returned by the home endpoint.
+Expected: 400 Bad Request.
 
-![Home Endpoint](./screenshots/home.png)
+**Invalid sorting order:**
 
-### 8.2 About Endpoint
+```text
+GET /books?order=INVALID
+```
 
-This screenshot demonstrates the student information returned in JSON format.
+Expected: 400 Bad Request.
 
-![About Endpoint](./screenshots/about.png)
+**Invalid pagination:**
 
-### 8.3 Time Endpoint
+```text
+GET /books?limit=-5
+```
 
-This screenshot demonstrates the current date and time returned by the server.
+Expected: 400 Bad Request.
 
-![Time Endpoint](./screenshots/time.png)
+**Invalid price range:**
 
-### 8.4 Unknown Route
+```text
+GET /books?min_price=500&max_price=200
+```
 
-This screenshot demonstrates the 404 response returned for an undefined route.
+Expected: 400 Bad Request.
 
-![Unknown Route](./screenshots/unknown.png)
+## Screenshots
 
-## 9. Notes
+### 1. Render Deployment
+<img width="1917" height="985" alt="render deployment" src="https://github.com/user-attachments/assets/3f371556-87c8-455c-a1af-277bb2fb49d6" />
 
-- Node.js provides the runtime environment for executing JavaScript on the server.
-- The built-in `http` module can be used to create a basic HTTP server.
-- Express.js simplifies server creation and route handling.
-- The `express()` function creates an Express application.
-- The `app.get()` method defines GET endpoints.
-- The request object (`req`) represents the incoming HTTP request.
-- The response object (`res`) is used to send data and status codes to the client.
-- The `res.send()` method sends a response to the client.
-- The `res.json()` method sends data in JSON format.
-- The `res.status()` method sets the HTTP response status code.
-- The `app.listen()` method starts the server on the specified port.
-- The `new Date()` method generates the current date and time.
-- The `toString()` method converts the date into a readable string.
-- HTTP status code `200` indicates a successful request.
-- HTTP status code `404` indicates that the requested route was not found.
-- The `package.json` file stores project information and dependencies.
-- The `package-lock.json` file maintains dependency version information.
-- The `node_modules` directory contains installed packages.
-- The `npm install` command installs project dependencies.
-- The `.gitignore` file specifies files and folders that Git should ignore.
-- The `.env` file should not be uploaded to GitHub because it may contain sensitive information.
-- Git and GitHub are used for version control and source code management.
-- Render is used to deploy the Node.js and Express.js application.
+### 2. GET All Books
+<img width="1917" height="1078" alt="GET All Books" src="https://github.com/user-attachments/assets/8614159d-d550-4b67-b77b-434fa0d72762" />
 
-## 10. Conclusion
 
-This lab provided practical experience in developing web servers using Node.js and Express.js. I learned how to initialize a Node.js project, install dependencies using npm, create a web server, and implement GET endpoints using Express.
+### 3. GET Book by ID
 
-I also learned how to return JSON responses, generate the current date and time, handle unknown routes using HTTP status code 404, and test application endpoints. Finally, I used GitHub for version control and deployed the application using Render.
+<img width="1917" height="1073" alt="GET Book by ID" src="https://github.com/user-attachments/assets/624ea790-981c-4643-a00a-9b9bbccaf8ce" />
 
-Overall, this lab strengthened my understanding of backend development fundamentals and the basic structure of a web server.
 
-## 11. GitHub Repository
+### 4. Search Books
+<img width="1917" height="1078" alt="Search Books" src="https://github.com/user-attachments/assets/1952f3d9-4de4-48c1-b736-335716e8abe0" />
 
-**Repository:** https://github.com/Mandomanyt/manivenkat5003_lab1
 
-**Deployment:** https://manivenkat5003-lab1.onrender.com/
+### 5. Sorting Ascending
+<img width="1917" height="1055" alt="Sorting Ascending" src="https://github.com/user-attachments/assets/cea8c7eb-a784-428e-9b20-c2cbfe932b3b" />
+
+
+### 6. Sorting Descending
+<img width="1917" height="1077" alt="Sorting Descending" src="https://github.com/user-attachments/assets/1a27ba2b-d305-43ab-9a3e-b53a59db87d2" />
+
+
+### 7. Pagination
+<img width="1917" height="1077" alt="Pagination" src="https://github.com/user-attachments/assets/444ad942-2e8f-4b7f-b1ba-821d7b139251" />
+
+
+### 8. Price Filtering
+<img width="1917" height="1077" alt="Price Filtering" src="https://github.com/user-attachments/assets/3c407fbe-ade9-4ed6-a932-45e946d1ee40" />
+
+
+### 9. Combined Query
+<img width="1917" height="1078" alt="Combined Query" src="https://github.com/user-attachments/assets/0b9fdaa9-19c2-4c3a-83ac-fb3771ed2886" />
+
+
+### 10. POST Successful Request
+<img width="1916" height="1078" alt="POST Successful Request" src="https://github.com/user-attachments/assets/b468ffbc-04ad-4c76-a5da-0f9d0a03354f" />
+
+
+### 11. POST Validation Error
+<img width="1917" height="1078" alt="POST Validation Error" src="https://github.com/user-attachments/assets/faf521d4-4eba-42c9-a185-6130fc46673f" />
+
+
+### 12. PUT Update Request
+<img width="1917" height="1077" alt="PUT Update Request" src="https://github.com/user-attachments/assets/cbcb8644-e7f0-4cc0-a8d2-074da63e57b7" />
+
+PUT – Update a Non-Existing Book
+<img width="1917" height="1078" alt="Screenshot 2026-11-05 235236" src="https://github.com/user-attachments/assets/8af17d8b-7282-4bb1-8d5a-30407906e369" />
+
+
+### 13. DELETE Request
+<img width="1908" height="1078" alt="DELETE Request" src="https://github.com/user-attachments/assets/c505dccf-1d0b-4fa4-81cc-b2f4e2197de8" />
+
+DELETE – Delete a Non-Existing Book
+<img width="1917" height="1078" alt="Screenshot 2026-11-05 234958" src="https://github.com/user-attachments/assets/c9b3028a-ce2a-42b6-8d15-d43d949f9fa4" />
+##  Debugging & Troubleshooting
+
+During the development and deployment of the REST API, several common errors were identified and resolved.
+
+### 1. Port Already in Use (EADDRINUSE)
+
+**Error:**
+```text
+Error: listen EADDRINUSE: address already in use :::3000
+```
+
+**Cause:**
+Another application or previously running Node.js server is already using port 3000.
+
+**Solution:**
+
+Stop the previous server using `Ctrl + C` in its terminal.
+
+Alternatively, find the process using port 3000 in Windows:
+
+```powershell
+netstat -ano | findstr :3000
+```
+
+Terminate the process using its PID:
+
+```powershell
+taskkill /PID <PID> /F
+```
+
+Restart the application:
+
+```bash
+npm run dev
+```
+
+### 2. Wrong Import Path
+
+**Error:**
+```text
+Error: Cannot find module '../database'
+```
+
+**Cause:**
+The required file path or filename is incorrect.
+
+**Solution:**
+
+- Verify that the required file exists.
+- Check the folder structure.
+- Correct the relative import path.
+
+Example:
+
+```javascript
+const db = require("./database");
+```
+
+### 3. SQLite Table Not Found
+
+**Error:**
+```text
+SQLITE_ERROR: no such table: books
+```
+
+**Cause:**
+The requested table does not exist in the connected SQLite database, or the application is connecting to a different database file.
+
+**Solution:**
+
+- Verify the database filename and path.
+- Check that the `books` table is created.
+- Ensure database initialization happens before executing queries.
+- Verify the table name in SQL queries.
+
+Example:
+
+```sql
+CREATE TABLE IF NOT EXISTS books (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    author TEXT,
+    price INTEGER,
+    pages INTEGER
+);
+```
+
+### 4. Missing Await in Asynchronous Operations
+
+**Problem:**
+
+Database operations return Promises. If `await` is missing, the response may contain a Promise instead of the actual database result.
+
+**Incorrect Code:**
+
+```javascript
+const books = db.all("SELECT * FROM books");
+res.json(books);
+```
+
+**Correct Code:**
+
+```javascript
+const books = await db.all("SELECT * FROM books");
+res.json(books);
+```
+
+**Solution:**
+
+Use `async/await` when handling asynchronous database operations and handle errors using `try/catch`.
+
+### 5. Missing Module (MODULE_NOT_FOUND)
+
+**Error:**
+```text
+Error: Cannot find module 'sqlite'
+```
+
+**Cause:**
+The required npm package is not installed or cannot be found in `node_modules`.
+
+**Solution:**
+
+Install the missing dependency:
+
+```bash
+npm install sqlite sqlite3
+```
+
+Verify the installed packages:
+
+```bash
+npm ls sqlite sqlite3
+```
+
+### 6. Missing Dev Script in package.json
+
+**Error:**
+```text
+npm error Missing script: "dev"
+```
+
+**Cause:**
+The `dev` script is missing from `package.json`, or the terminal is running in the wrong project directory.
+
+**Solution:**
+
+Add the following scripts to `package.json`:
+
+```json
+"scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+}
+```
+
+Install dependencies and start the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+### 7. Render Deployment Error (SQLite GLIBC Compatibility)
+
+**Error:**
+```text
+GLIBC_2.38 not found
+```
+
+**Cause:**
+The SQLite3 native binary was incompatible with the Linux runtime environment used by Render.
+
+**Troubleshooting:**
+
+- Use a compatible SQLite3 package version.
+- Configure the Node.js version.
+- Rebuild the SQLite3 native module in the Render build environment.
+- Clear the Render build cache and redeploy.
+
+Example Render Build Command:
+
+```bash
+npm ci && npm rebuild sqlite3 --build-from-source
+```
+
+### 8. SQLite3 Native Binding Not Found
+
+**Error:**
+```text
+Error: Could not locate the bindings file
+```
+
+**Cause:**
+The SQLite3 native module was not successfully built or installed for the deployment environment.
+
+**Solution:**
+
+Rebuild the native module:
+
+```bash
+npm rebuild sqlite3 --build-from-source
+```
+
+Check the Render build logs to verify that the compilation completes successfully.
 
 ---
+
+### Debugging Summary
+
+| Error | Solution |
+|---|---|
+| EADDRINUSE | Stop the process using the port |
+| Wrong import path | Correct the require path |
+| No such table | Verify database and table creation |
+| Missing await | Use async/await |
+| MODULE_NOT_FOUND | Install the required package |
+| Missing dev script | Add scripts to package.json |
+| GLIBC compatibility | Rebuild SQLite3 for Render |
+| Native binding not found | Rebuild SQLite3 native module |
+
+**Result:** Common backend errors were identified, debugged and resolved through proper dependency management, database configuration, asynchronous programming and deployment troubleshooting.
+
+## Conclusion
+
+This lab helped me understand REST API development using Node.js, Express.js, and SQLite. I implemented CRUD operations and learned how to use query parameters for searching, sorting, pagination, and price filtering.
+
+I also understood input validation, HTTP status codes, database integration, and debugging techniques. Postman helped me test the API endpoints and verify their responses. Finally, I deployed the REST API using Render.
+
+---
+
+**End of Lab 3**
