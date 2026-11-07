@@ -331,58 +331,57 @@ Expected: 400 Bad Request.
 ## Screenshots
 
 ### 1. Render Deployment
-<img width="1917" height="985" alt="render deployment" src="https://github.com/user-attachments/assets/3f371556-87c8-455c-a1af-277bb2fb49d6" />
+<img width="1917" height="985" alt="render deployment" src="./screenshots/render%20deployment.png" />
 
 ### 2. GET All Books
-<img width="1917" height="1078" alt="GET All Books" src="https://github.com/user-attachments/assets/8614159d-d550-4b67-b77b-434fa0d72762" />
+<img width="1917" height="1078" alt="GET All Books" src="./screenshots/GET%20All%20Books.png" />
 
 
 ### 3. GET Book by ID
-
-<img width="1917" height="1073" alt="GET Book by ID" src="https://github.com/user-attachments/assets/624ea790-981c-4643-a00a-9b9bbccaf8ce" />
+<img width="1917" height="1073" alt="GET Book by ID" src="./screenshots/GET%20Book%20by%20ID.png" />
 
 
 ### 4. Search Books
-<img width="1917" height="1078" alt="Search Books" src="https://github.com/user-attachments/assets/1952f3d9-4de4-48c1-b736-335716e8abe0" />
+<img width="1917" height="1078" alt="Search Books" src="./screenshots/Search%20Books.png" />
 
 
 ### 5. Sorting Ascending
-<img width="1917" height="1055" alt="Sorting Ascending" src="https://github.com/user-attachments/assets/cea8c7eb-a784-428e-9b20-c2cbfe932b3b" />
+<img width="1917" height="1055" alt="Sorting Ascending" src="./screenshots/Sorting%20Ascending.png" />
 
 
 ### 6. Sorting Descending
-<img width="1917" height="1077" alt="Sorting Descending" src="https://github.com/user-attachments/assets/1a27ba2b-d305-43ab-9a3e-b53a59db87d2" />
+<img width="1917" height="1077" alt="Sorting Descending" src="./screenshots/Sorting%20Descending.png" />
 
 
 ### 7. Pagination
-<img width="1917" height="1077" alt="Pagination" src="https://github.com/user-attachments/assets/444ad942-2e8f-4b7f-b1ba-821d7b139251" />
+<img width="1917" height="1077" alt="Pagination" src="./screenshots/Pagination.png" />
 
 
 ### 8. Price Filtering
-<img width="1917" height="1077" alt="Price Filtering" src="https://github.com/user-attachments/assets/3c407fbe-ade9-4ed6-a932-45e946d1ee40" />
+<img width="1917" height="1077" alt="Price Filtering" src="./screenshots/Price%20Filtering.png" />
 
 
 ### 9. Combined Query
-<img width="1917" height="1078" alt="Combined Query" src="https://github.com/user-attachments/assets/0b9fdaa9-19c2-4c3a-83ac-fb3771ed2886" />
+<img width="1917" height="1078" alt="Combined Query" src="./screenshots/Combined%20Query.png" />
 
 
 ### 10. POST Successful Request
-<img width="1916" height="1078" alt="POST Successful Request" src="https://github.com/user-attachments/assets/b468ffbc-04ad-4c76-a5da-0f9d0a03354f" />
+<img width="1916" height="1078" alt="POST Successful Request" src="./screenshots/POST%20Successful%20Request.png" />
 
 
 ### 11. POST Validation Error
-<img width="1917" height="1078" alt="POST Validation Error" src="https://github.com/user-attachments/assets/faf521d4-4eba-42c9-a185-6130fc46673f" />
+<img width="1917" height="1078" alt="POST Validation Error" src="./screenshots/POST%20Validation%20Error.png" />
 
 
 ### 12. PUT Update Request
-<img width="1917" height="1077" alt="PUT Update Request" src="https://github.com/user-attachments/assets/cbcb8644-e7f0-4cc0-a8d2-074da63e57b7" />
+<img width="1917" height="1077" alt="PUT Update Request" src="./screenshots/PUT%20Update%20Request.png" />
 
 PUT – Update a Non-Existing Book
 <img width="1917" height="1078" alt="Screenshot 2026-11-05 235236" src="https://github.com/user-attachments/assets/8af17d8b-7282-4bb1-8d5a-30407906e369" />
 
 
 ### 13. DELETE Request
-<img width="1908" height="1078" alt="DELETE Request" src="https://github.com/user-attachments/assets/c505dccf-1d0b-4fa4-81cc-b2f4e2197de8" />
+<img width="1908" height="1078" alt="DELETE Request" src="./screenshots/DELETE%20Request.png" />
 
 DELETE – Delete a Non-Existing Book
 <img width="1917" height="1078" alt="Screenshot 2026-11-05 234958" src="https://github.com/user-attachments/assets/c9b3028a-ce2a-42b6-8d15-d43d949f9fa4" />
